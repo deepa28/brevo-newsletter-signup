@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/newsletter.css">
+</head>
+<body>
+  <main>
+    <section class="container" aria-labelledby="error-title">
+      <h1 id="error-title">Oops!</h1>
+      <div class="error-message" id="error-message" style="display:block;text-align:center;"></div>
+      <a href="/" class="button" aria-label="Back to signup form">Back to Signup</a>
+    </section>
+  </main>
+  <script>
+    // Display error message from query string if present
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+    const errorMsg = getQueryParam('msg');
+    if (errorMsg) {
+      document.getElementById('error-message').textContent = decodeURIComponent(errorMsg);
+    } else {
+      document.getElementById('error-message').textContent = 'An unexpected error occurred.';
+    }
+  </script>
+</body>
+</html>

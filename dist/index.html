@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up for our Brevo Newsletter</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/newsletter.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    main {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px 28px 28px 28px;
+      text-align: center;
+      margin: 24px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: #2d3748;
+      font-weight: 700;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+    label {
+      text-align: left;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+    input[type="email"] {
+      padding: 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+      background: #f9fafb;
+    }
+    input[type="email"]:focus {
+      border-color: #3182ce;
+      box-shadow: 0 0 0 2px #90cdf4;
+    }
+    button[type="submit"] {
+      padding: 12px;
+      background: linear-gradient(90deg, #3182ce 0%, #00b4d8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(49,130,206,0.08);
+    }
+    button[type="submit"]:hover, button[type="submit"]:focus {
+      background: linear-gradient(90deg, #2563eb 0%, #0096c7 100%);
+      box-shadow: 0 4px 16px rgba(49,130,206,0.12);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    .error-message {
+      color: #e53e3e;
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+      display: none;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 18px 6px 18px 6px;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="container" aria-labelledby="newsletter-title">
+      <h1 id="newsletter-title">Sign up for our Newsletter</h1>
+      <form action="/subscribe" method="POST" aria-describedby="newsletter-desc" novalidate>
+        <span id="newsletter-desc" class="sr-only">Subscribe to receive updates and news from us.</span>
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email" />
+        </div>
+        <div class="error-message" id="error-message" role="alert"></div>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+  <script>
+    // Optional: Client-side email validation for instant feedback
+    const form = document.querySelector('form');
+    const emailInput = document.getElementById('email');
+    const errorMessage = document.getElementById('error-message');
+    form.addEventListener('submit', function(e) {
+      errorMessage.style.display = 'none';
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        errorMessage.textContent = 'Please enter a valid email address.';
+        errorMessage.style.display = 'block';
+        emailInput.focus();
+      }
+    });
+  </script>
+</body>
+</html>
